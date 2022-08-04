@@ -36,7 +36,7 @@ const slides = [
 
 const arrowNextElement = document.querySelector('.arrow-next')
 const arrowPrevElement = document.querySelector('.arrow-prev')
-const liElement = document.querySelector('slide');
+const liElement = document.querySelector('.slide');
 
 const liSlides = []
 
@@ -44,21 +44,28 @@ let indiceCorrente = 0
 
 for(key in slides) {
 	liSlides.push(slides[key])
-	console.log(liSlides)
 }
 
+for(let i = 0; i < slides.length; i++) {
+	
+	if(i === 0) {
+		liElement.classList.add('active')
+	}
+}
+
+console.log(liSlides)
 
 
+arrowNextElement.addEventListener('click', function() {
+	
+	const slideAttiva = liSlides[indiceCorrente];
+	slideAttiva.classList.remove("active");
 
+	if(indiceCorrente === 4) {
+		const slideSuccessiva = liSlides[indiceCorrente = 0 - 1 ]
+	}
 
-	// if(i === 0) {
-	// 	liElement.classList.add('active')
-	// }
-
-// arrowNextElement.addEventListener('click', function() {
-// 	const slideAttiva = liSlides[indiceCorrente];
-// 	slideAttiva.classList.remove("active");
-// 	slideSuccessiva = liSlides[indiceCorrente + 1];
-// 	slideSuccessiva.classList.add("active");
-// 	indiceCorrente++;
-// })
+	slideSuccessiva = liSlides[indiceCorrente + 1];
+	slideSuccessiva.classList.add("active");
+	indiceCorrente++;
+})
