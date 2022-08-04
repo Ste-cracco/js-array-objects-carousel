@@ -34,24 +34,43 @@ const slides = [
 	},
 ]
 
+const slideWrapperElement = document.querySelector(".slides-wrapper");
 const arrowNextElement = document.querySelector('.arrow-next')
 const arrowPrevElement = document.querySelector('.arrow-prev')
-const liElement = document.querySelector('.slide');
 
 const liSlides = []
 
-let indiceCorrente = 0
+let indiceCorrente = 0	
 
-for(key in slides) {
-	liSlides.push(slides[key])
-}
-
-for(let i = 0; i < slides.length; i++) {
+slides.forEach((element,indice) => {
 	
-	if(i === 0) {
+	const liElement = document.createElement('li');
+	liElement.classList.add('slide');
+	// Assegno all'attrubuto"src" delle <img>, il valore src equivalente a element.url
+	let src = element.url 
+
+	const imgElement = document.createElement('img');
+	imgElement.src = src
+	liElement.append(imgElement)
+
+	let h3Element = document.createElement('h3');
+	h3Element = element.title
+	liElement.append(h3Element)
+
+	let pElement = document.createElement('p');
+	pElement = element.description
+	liElement.append(pElement)
+
+
+    slideWrapperElement.append(liElement);
+
+	slideWrapperElement.append(liElement)
+	liSlides.push(liElement);
+
+	if(indice === 0) {
 		liElement.classList.add('active')
 	}
-}
+});
 
 console.log(liSlides)
 
@@ -59,6 +78,7 @@ console.log(liSlides)
 arrowNextElement.addEventListener('click', function() {
 	
 	const slideAttiva = liSlides[indiceCorrente];
+	console.log(slideAttiva)
 	slideAttiva.classList.remove("active");
 
 	if(indiceCorrente === 4) {
@@ -68,4 +88,16 @@ arrowNextElement.addEventListener('click', function() {
 	slideSuccessiva = liSlides[indiceCorrente + 1];
 	slideSuccessiva.classList.add("active");
 	indiceCorrente++;
+})
+
+
+arrowPrevElement.addEventListener('click', function() {
+	const slideAttiva = liSlides[indiceCorrente];
+	slideAttiva.classList.remove("active");
+	if(indiceCorrente === 0) {
+		const slideSuccessiva = liSlides[indiceCorrente = 5]
+	}
+	const slideSuccessiva = liSlides[indiceCorrente - 1];
+	slideSuccessiva.classList.add("active");
+	indiceCorrente--;
 })
