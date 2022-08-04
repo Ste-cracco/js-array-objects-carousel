@@ -54,15 +54,14 @@ slides.forEach((element,indice) => {
 	liElement.append(imgElement)
 
 	let h3Element = document.createElement('h3');
-	h3Element = element.title
+	h3Element.innerHTML += element.title
+	h3Element.classList.add('slide__title')
 	liElement.append(h3Element)
 
 	let pElement = document.createElement('p');
-	pElement = element.description
+	pElement.innerHTML += element.description
+	pElement.classList.add('slide__description')
 	liElement.append(pElement)
-
-
-    slideWrapperElement.append(liElement);
 
 	slideWrapperElement.append(liElement)
 	liSlides.push(liElement);
@@ -72,13 +71,10 @@ slides.forEach((element,indice) => {
 	}
 });
 
-console.log(liSlides)
-
 
 arrowNextElement.addEventListener('click', function() {
 	
 	const slideAttiva = liSlides[indiceCorrente];
-	console.log(slideAttiva)
 	slideAttiva.classList.remove("active");
 
 	if(indiceCorrente === 4) {
@@ -94,9 +90,11 @@ arrowNextElement.addEventListener('click', function() {
 arrowPrevElement.addEventListener('click', function() {
 	const slideAttiva = liSlides[indiceCorrente];
 	slideAttiva.classList.remove("active");
+
 	if(indiceCorrente === 0) {
 		const slideSuccessiva = liSlides[indiceCorrente = 5]
 	}
+	
 	const slideSuccessiva = liSlides[indiceCorrente - 1];
 	slideSuccessiva.classList.add("active");
 	indiceCorrente--;

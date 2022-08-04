@@ -21,6 +21,9 @@ ul {
 	display: none;
 	position: relative;
 }
+.slide-wrapper {
+	position: relative;
+}
 
 .slide__content {
 	position: absolute;
@@ -57,12 +60,19 @@ ul {
 .slide__title {
 	font-size: 3rem;
 	font-weight: 700;
+	position: absolute;
+	top: 5px;
+	right: 15px;
+	color: white;
 }
 
 .slide__description {
-	width: 60%;
 	font-size: 0.75rem;
 	line-height: 1.7em;
+	position: absolute;
+	top: 70px;
+	right: 15px;
+	color: white;
 }
 
 .slide.active {
